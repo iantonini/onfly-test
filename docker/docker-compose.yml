@@ -1,0 +1,38 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: onfly_api
+    container_name: onfly_api
+    ports:
+      - "9501:9501"
+    volumes:
+      - ../api:/api
+    env_file:
+      - .env
+    networks:
+      - onfly-network
+    # restart: always
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - onfly_mysql_data:/var/lib/mysql
+    env_file:
+      - .env
+    networks:
+      - onfly-network
+    # restart: always
+
+volumes:
+  onfly_mysql_data:
+
+networks:
+  onfly-network:
+    driver: bridge

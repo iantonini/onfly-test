@@ -1,19 +1,15 @@
-## Teste Onfly   
-
-#### Requisitos:   
-Prazo estipulado: 04/11/24 até 08/11/24   
-Arquivo: [ONFLY-Requisitos.pdf](ONFLY-Requisitos.pdf)   
-
-#### Contatos:   
-- sara.pinheiro@onfly.com.br   
+### Onfly | Teste técnico   
 
 ___
-#### Onfly | Teste técnico
+[Home](../README.md) |
+[Requisitos](./Onfly-Teste-Tecnico.md) |
+[Doc Swagguer](http://localhost:9501/swagger/) |
+___
 
-#### Para começar:
+#### Para começar:   
 - Crie um repositório no seu GitHub
 - Faça seus commits no seu repositório
-- Tecnologia para desenvolvimento da aplicação: PHP usando Laravel ou Hyper-f 
+- Tecnologia para desenvolvimento da aplicação: PHP usando Laravel ou Hyper-f   
 
 #### Objetivo:   
 - Crie um sistema que simula de forma básica o cadastro de despesas de um usuário a partir de um cartão.   
@@ -53,4 +49,7 @@ ___
 - Uso de Design Patterns   
 - Documentação   
 - Prazo esperado para o teste   
+
 Lembrando que todos os pontos acima demonstram domínio!.   
+
+Prazo: 04 dias corridos   
