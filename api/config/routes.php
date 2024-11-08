@@ -10,6 +10,8 @@ Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'App\Controller\IndexController@i
 // Login - Gerar Token
 Router::post('/login', 'App\Controller\LoginController@login');
 
+
+
 // List User
 Router::post('/user', 'App\Controller\UserController@listUser');
 
@@ -24,4 +26,25 @@ Router::put('/user/update', 'App\Controller\UserController@updateUser');
 
 // Delete User
 Router::delete('/user/delete', 'App\Controller\UserController@deleteUser');
+
+
+
+// List Cards
+Router::post('/cards/user', 'App\Controller\CardController@listUserCards');
+
+// Create Cards
+Router::post('/card/create', 'App\Controller\CardController@createCard');
+
+// Update Cards
+Router::put('/card/update', 'App\Controller\CardController@updateCard');
+
+// Delete Cards
+Router::delete('/card/delete', 'App\Controller\CardController@deleteCard');
+
+// List All Cards
+Router::post('/cards', 'App\Controller\CardController@listCards');
+
+// List All Deleted Cards
+Router::post('/cards/deleted', 'App\Controller\CardController@listDeletedCards');
+
 
