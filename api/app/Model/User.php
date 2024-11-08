@@ -5,7 +5,7 @@ namespace App\Model;
 
 use Hyperf\DbConnection\Model\Model;
 
-class Users extends Model
+class User extends Model
 {
     protected ?string $table = 'users';
     protected array $fillable = ['id', 'superuser', 'user_name', 'email'];

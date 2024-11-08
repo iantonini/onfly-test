@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Model\Users;
-use App\Model\Cards;
+use App\Model\User;
+use App\Model\Card;
 
 
 class CardController extends AbstractController
@@ -16,7 +16,7 @@ class CardController extends AbstractController
     // TODO: verificar numero maximo de tentativas (5)
     private function getNewCardNumber() {
         $card = (string) (rand(1000000000000000, 9999999999999999));
-        if (Cards::where('card_number', $card)->first() && $this->countCards++ < 5) {
+        if (Card::where('card_number', $card)->first() && $this->countCards++ < 5) {
             $card = $this->getNewCardNumber();
         }
         return $card;
@@ -35,7 +35,7 @@ class CardController extends AbstractController
 
             $user = $this->tokenService->getUserByToken($token);
             if ($user) {
-                $cards = Cards::where('fk_user', $user->id)->where('deleted', false)->get();
+                $cards = Card::where('fk_user', $user->id)->where('deleted', false)->get();
 
                 $status = 'success';
                 $msg = 'success';
@@ -63,9 +63,9 @@ class CardController extends AbstractController
             $user = $this->tokenService->getUserByToken($token);
             if ($user) {
                 if (!! $user->superuser) {
-                    $allCards = Cards::where('deleted', false)->get();
+                    $allCards = Card::where('deleted', false)->get();
                 } else {
-                    $allCards = Cards::where('fk_user', $user->id)->where('deleted', false)->get();
+                    $allCards = Card::where('fk_user', $user->id)->where('deleted', false)->get();
                 }
                 $status = 'success';
                 $msg = 'success';
@@ -105,9 +105,9 @@ class CardController extends AbstractController
                     if ($isValid['valid']) {
                         $msg = 'No users with specified user_id were found';
 
-                        if (Users::where('id', $data['user_id'])->first()) {
+                        if (User::where('id', $data['user_id'])->first()) {
                             $newCardNumber = $this->getNewCardNumber();
-                            $newCard = Cards::Create([
+                            $newCard = Card::Create([
                                 'fk_user' => $data['user_id'],
                                 'card_number' => $newCardNumber,
                                 'balance' => $data['balance']
@@ -147,7 +147,7 @@ class CardController extends AbstractController
                 $msg = 'This user does not have permission to update Card';
 
                 if (!! $user->superuser) {
-                    $updateCard = Cards::where('card_number', $data['card_number'])->first();
+                    $updateCard = Card::where('card_number', $data['card_number'])->first();
                     if ($updateCard) {
                         $msg = 'No information to update. Inform new_user_id and/or new_balance';
 
@@ -156,7 +156,7 @@ class CardController extends AbstractController
                             $error = false;
     
                             if (isset($data['new_user_id'])) {
-                                if (! empty($data['new_user_id']) && !! Users::where('id', $data['new_user_id'])->first()) {
+                                if (! empty($data['new_user_id']) && !! User::where('id', $data['new_user_id'])->first()) {
                                     $updateCard->fk_user = $data['new_user_id'];
                                 } else {
                                     $msg = 'No users with specified user_id were found';
@@ -179,7 +179,7 @@ class CardController extends AbstractController
                             }
                         }
 
-                        $updateCard = Cards::where('card_number', $data['card_number'])->first();
+                        $updateCard = Card::where('card_number', $data['card_number'])->first();
                     }
                 }
             }
@@ -211,7 +211,7 @@ class CardController extends AbstractController
                 $msg = 'This user does not have permission to update Card';
 
                 if (!! $user->superuser) {
-                    $deleteCard = Cards::where('card_number', $data['card_number'])->first();
+                    $deleteCard = Card::where('card_number', $data['card_number'])->first();
                     if ($deleteCard) {
                         $msg = 'Failed to update Card';
 
@@ -221,7 +221,7 @@ class CardController extends AbstractController
                             $msg = 'Card deleted successfully';
                         }
 
-                        $deleteCard = Cards::where('card_number', $data['card_number'])->first();
+                        $deleteCard = Card::where('card_number', $data['card_number'])->first();
                     }
                 }
             }
@@ -248,7 +248,7 @@ class CardController extends AbstractController
             $user = $this->tokenService->getUserByToken($token);
             if ($user) {
                 if (!! $user->superuser) {
-                    $allCards = Cards::where('deleted', true)->get();
+                    $allCards = Card::where('deleted', true)->get();
                 }
                 $status = 'success';
                 $msg = 'success';

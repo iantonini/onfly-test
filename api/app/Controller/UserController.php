@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Model\Users;
+use App\Model\User;
 
 
 class UserController extends AbstractController
@@ -51,7 +51,7 @@ class UserController extends AbstractController
             if ($user) {
                 $allUsers = $user;
                 if (!! $user->superuser) {
-                    $allUsers = Users::all();
+                    $allUsers = User::all();
                 }
                 $status = 'success';
                 $msg = 'success';
@@ -92,7 +92,7 @@ class UserController extends AbstractController
                         $msg = 'This email is already registered';
 
                         if ($this->emailNotRegistered($data['email'])) {
-                            $newUser = Users::Create([
+                            $newUser = User::Create([
                                 'user_name' => $data['user_name'],
                                 'superuser' => (isset($data['superuser']) ? $data['superuser'] : false),
                                 'email' => $data['email']
@@ -193,7 +193,7 @@ class UserController extends AbstractController
                     if ($userDeleted) {
                         $msg = 'Failed to update user';
 
-                        $userDeleted = Users::where('id', $userDeleted->id)->delete();
+                        $userDeleted = User::where('id', $userDeleted->id)->delete();
                         if ($userDeleted) {
                             $status = 'success';
                             $msg = 'user deleted successfully';
@@ -228,12 +228,12 @@ class UserController extends AbstractController
 
     private function emailNotRegistered($email)
     {
-        return ! (Users::where('email', $email)->first());
+        return ! (User::where('email', $email)->first());
     }
 
     private function getUser($email)
     {
-        return Users::where('email', $email)->first();
+        return User::where('email', $email)->first();
     }
 
 }

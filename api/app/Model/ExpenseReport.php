@@ -5,7 +5,7 @@ namespace App\Model;
 
 use Hyperf\DbConnection\Model\Model;
 
-class ExpenseReports extends Model
+class ExpenseReport extends Model
 {
     protected ?string $table = 'expense_reports';
     protected array $fillable = [

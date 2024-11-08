@@ -3,7 +3,7 @@
 namespace App\Repository;
 
 use Hyperf\Di\Annotation\Component;
-use App\Model\Users;
+use App\Model\User;
 
 /**
  * @Component
@@ -14,7 +14,7 @@ class TokenRepository
 
     public function findToken(string $token)
     {
-        return Users::whereRaw(
+        return User::whereRaw(
             'MD5(CONCAT(?, email)) = ?', 
             [ $this->hashKey, $token ]
         )->first();

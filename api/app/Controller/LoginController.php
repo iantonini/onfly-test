@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Model\Users;
+use App\Model\User;
 
 class LoginController extends AbstractController
 {
@@ -22,7 +22,7 @@ class LoginController extends AbstractController
             $status = 'unauthorized';
             $msg = 'unauthorized email';
 
-            $user = Users::where('email', $email)->first();
+            $user = User::where('email', $email)->first();
             if (!empty($user)) {
                 $status = 'success';
                 $msg = 'authorized email';
