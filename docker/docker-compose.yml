@@ -10,7 +10,7 @@ services:
     volumes:
       - ../api:/api
     env_file:
-      - .env
+      - .env-exemple
     networks:
       - onfly-network
     # restart: always
@@ -25,7 +25,7 @@ services:
     volumes:
       - onfly_mysql_data:/var/lib/mysql
     env_file:
-      - .env
+      - .env-exemple
     networks:
       - onfly-network
     # restart: always

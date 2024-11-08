@@ -37,4 +37,5 @@ COPY . /api
 
 EXPOSE 9501
 
-ENTRYPOINT ["php", "/api/bin/hyperf.php", "start"]
+# ENTRYPOINT ["php", "/api/bin/hyperf.php", "start"]
+ENTRYPOINT ["php", "/api/bin/hyperf.php", "server:watch"]
