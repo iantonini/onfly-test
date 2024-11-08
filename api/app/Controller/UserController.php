@@ -45,13 +45,12 @@ class UserController extends AbstractController
 
         $token = $this->request->input('token');
         if (isset($token)) {
-            $status = 'success';
             $msg = 'Unable to find a user with the provided token';
 
             $user = $this->tokenService->getUserByToken($token);
             if ($user) {
                 $allUsers = $user;
-                if (!!$user->superuser) {
+                if (!! $user->superuser) {
                     $allUsers = Users::all();
                 }
                 $status = 'success';
@@ -62,7 +61,7 @@ class UserController extends AbstractController
         return $this->response->json([
             'status' => $status,
             'message' => $msg,
-            'user' => $allUsers,
+            'users' => $allUsers,
         ]);
     }
 
@@ -132,7 +131,7 @@ class UserController extends AbstractController
 
             $user = $this->tokenService->getUserByToken($data['token']);
             if ($user) {
-                $msg = 'This user does not have permission to create new users';
+                $msg = 'This user does not have permission to update user';
 
                 if (!!$user->superuser) {
                     $isValid = $this->requestIsValid($data);
@@ -212,12 +211,6 @@ class UserController extends AbstractController
             'user' => $userDeleted,
         ]);
     }
-
-
-    // private function validateToken($token)
-    // {
-    //     return false;
-    // }
 
     private function requestIsValid($data)
     {
