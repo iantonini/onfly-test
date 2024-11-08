@@ -16,6 +16,6 @@ class IndexController extends AbstractController
 {
     public function index()
     {
-        return ['onfly'=>'teste tecnico'];
+        return ['Onfly'=>'Teste Técnico'];
     }
 }

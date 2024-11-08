@@ -1,15 +1,15 @@
 <?php
 
+declare(strict_types=1);
+use function Hyperf\Support\env;
+
 return [
-    'enabled' => true, //env('WATCHER_ENABLED', true),
+    'enable' => env('WATCHER_ENABLED', true),
+    'driver' => Hyperf\Watcher\Driver\ScanFileDriver::class,
+    'bin' => 'php',
     'watch' => [
-        'directories' => [
-            'app',
-            'config',
-        ],
-        'file_types' => [
-            'php',
-        ],
+        'dir' => ['app', 'config'],
+        'file' => ['.php'],
+        'scan_interval' => env('WATCHER_ENABLED', 1000),
     ],
-    'interval' => 1.0, //env('WATCHER_INTERVAL', 1.0),
 ];
