@@ -1,14 +1,27 @@
 <?php
 
 declare(strict_types=1);
-/**
- * This file is part of Hyperf.
- *
- * @link     https://www.hyperf.io
- * @document https://hyperf.wiki
- * @contact  group@hyperf.io
- * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
- */
+
 use Hyperf\HttpServer\Router\Router;
 
 Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'App\Controller\IndexController@index');
+
+
+// Login - Gerar Token
+Router::post('/login', 'App\Controller\LoginController@login');
+
+// List User
+Router::post('/user', 'App\Controller\UserController@listUser');
+
+// List Users
+Router::post('/users', 'App\Controller\UserController@listUsers');
+
+// Create User
+Router::post('/user/create', 'App\Controller\UserController@createUser');
+
+// Update User
+Router::put('/user/update', 'App\Controller\UserController@updateUser');
+
+// Delete User
+Router::delete('/user/delete', 'App\Controller\UserController@deleteUser');
+

@@ -17,6 +17,9 @@ use Hyperf\HttpServer\Contract\RequestInterface;
 use Hyperf\HttpServer\Contract\ResponseInterface;
 use Psr\Container\ContainerInterface;
 
+use App\Service\TokenService;
+
+
 abstract class AbstractController
 {
     #[Inject]
@@ -27,4 +30,19 @@ abstract class AbstractController
 
     #[Inject]
     protected ResponseInterface $response;
+
+    #[Inject]
+    protected TokenService $tokenService;
+
+    public function __construct(
+        ContainerInterface $container,
+        RequestInterface $request,
+        ResponseInterface $response,
+        TokenService $tokenService,
+    ) {
+        $this->container = $container;
+        $this->request = $request;
+        $this->response = $response;
+        $this->tokenService = $tokenService;
+    }
 }
