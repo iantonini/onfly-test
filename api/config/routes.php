@@ -48,3 +48,12 @@ Router::post('/cards', 'App\Controller\CardController@listCards');
 Router::post('/cards/deleted', 'App\Controller\CardController@listDeletedCards');
 
 
+
+// List Expenses
+Router::post('/expenses/card', 'App\Controller\ExpenseController@listCardExpenses');
+
+// Create Expenses
+Router::post('/expense/create', 'App\Controller\ExpenseController@createExpense');
+
+// Delete Expenses
+Router::delete('/expense/delete', 'App\Controller\ExpenseController@deleteExpense');
