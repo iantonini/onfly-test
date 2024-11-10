@@ -29,7 +29,7 @@ class ExpenseRepository
 
     public function isPreviousDeletionRecord(int $id, int $cardId, int $count=0)
     {
-        $expense = $this->model->where('delete', $id)->where('fk_card', $cardId)->first();
+        $expense = $this->model->where('deleted', $id)->where('fk_card', $cardId)->first();
         if (isset($expense) && isset($expense->id)) {
             $expense = $this->isPreviousDeletionRecord($expense->id, $expense->fk_card, ++$count);
         } else {

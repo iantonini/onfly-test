@@ -45,7 +45,7 @@ class TransactionService
                             $updateCard = $this->CardRepository->updateBalance($card->id, $new_balance);
 
                             $dataExpense = [
-                                'fk_user' => $registered_by_user,
+                                'registered_by_user' => $registered_by_user,
                                 'fk_card' => $card->id,
                                 'expense_value' => $expense,
                                 'previous_balance' => $card->balance,
@@ -92,7 +92,7 @@ class TransactionService
                         $updateCard = $this->CardRepository->updateBalance($card->id, $new_balance);
 
                         $dataCreateExpense = [
-                            'fk_user' => $registered_by_user,
+                            'registered_by_user' => $registered_by_user,
                             'fk_card' => $expense_delete->fk_card,
                             'expense_value' => $expense_delete->expense_value,
                             'previous_balance' => $expense_delete->current_balance,

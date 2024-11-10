@@ -110,7 +110,8 @@ class CardController extends AbstractController
                             $newCard = Card::Create([
                                 'fk_user' => $data['user_id'],
                                 'card_number' => $newCardNumber,
-                                'balance' => $data['balance']
+                                'balance' => $data['balance'],
+                                'balance_created' => $data['balance']
                             ]);
 
                             $status = 'success';

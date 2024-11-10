@@ -34,20 +34,18 @@ class ExpenseController extends AbstractController
                 if ($userToken) {
                     $msg = 'No cards with specified token were found';
 
-                    $cards = Card::where('fk_user', $userToken->id)
-                        ->where('deleted', false)
-                        ->where('card_number', $card_number)
-                        ->select('id', 'card_number', 'balance_created', 'balance')
+                    $cards = Card::where('card_number', $card_number)
+                        ->select('id', 'card_number', 'balance_created', 'balance', 'deleted')
                         ->first();
 
                     if (!! $cards) {
                         $msg = 'No expenses for the specified card were found';
 
                         $expenses = Expense::where('fk_card', $cards->id)
-                            ->where('delete', false)
+                            ->where('deleted', false)
                             ->select(
                                 'id', 'previous_balance', 'expense_value',
-                                'current_balance', 'delete', 'fk_user as registered_by_user'
+                                'current_balance', 'deleted', 'registered_by_user'
                             )->get();
 
                         if (!! $expenses) {
@@ -94,13 +92,13 @@ class ExpenseController extends AbstractController
                     if (!! $userToken->superuser) {
                         $cards = Card::where('deleted', false)
                         ->where('card_number', $card_number)
-                        ->select('id', 'card_number', 'balance_created', 'balance')
+                        ->select('id', 'card_number', 'balance_created', 'balance', 'deleted')
                         ->first();
                     } else {
                         $cards = Card::where('fk_user', $userToken->id)
                         ->where('deleted', false)
                         ->where('card_number', $card_number)
-                        ->select('id', 'card_number', 'balance_created', 'balance')
+                        ->select('id', 'card_number', 'balance_created', 'balance', 'deleted')
                         ->first();
                     }
     
@@ -166,12 +164,12 @@ class ExpenseController extends AbstractController
                     $msg = 'The card provided was not found';
 
                     if (!! $userToken->superuser) {
-                        $expense = Expense::where('delete', false)
+                        $expense = Expense::where('deleted', false)
                         ->where('id', $expense_id)
                         ->first();
                     } else {
-                        $expense = Expense::where('fk_user', $userToken->id)
-                        ->where('delete', false)
+                        $expense = Expense::where('registered_by_user', $userToken->id)
+                        ->where('deleted', false)
                         ->where('id', $expense_id)
                         ->first();
                     }

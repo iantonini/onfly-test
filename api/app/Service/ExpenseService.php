@@ -18,7 +18,7 @@ class ExpenseService
     public function showExpensesCard($cardId)
     {
         try {
-            $expenses = Expense::where('id', $cardId)->where('delete', false)->get();
+            $expenses = Expense::where('id', $cardId)->where('deleted', false)->get();
         } catch (\Exception $e) {
             return "Erro: " . $e->getMessage();
         }
@@ -28,7 +28,7 @@ class ExpenseService
     public function showExpensesUser($userId)
     {
         try {
-            $expenses = Expense::where('id', $userId)->where('delete', false)->get();
+            $expenses = Expense::where('id', $userId)->where('deleted', false)->get();
         } catch (\Exception $e) {
             return "Erro: " . $e->getMessage();
         }
@@ -45,7 +45,7 @@ class ExpenseService
                 ]);
 
                 Expense::create([
-                    'fk_user' => $expenseData['fk_user'],
+                    'registered_by_user' => $expenseData['registered_by_user'],
                     'fk_card' => $expenseData['fk_card'],
                     'expense_value' => $expenseData['expense_value'],
                     'privious_balance' => $expenseData['privious_balance'],

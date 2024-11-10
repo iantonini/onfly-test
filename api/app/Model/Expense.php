@@ -10,11 +10,11 @@ class Expense extends Model
     protected ?string $table = 'expenses';
     protected array $fillable = [
         'id',
-        'fk_user',
         'fk_card',
         'expense_value',
         'previous_balance',
         'current_balance',
-        'delete',
+        'deleted',
+        'registered_by_user',
     ];
 }
