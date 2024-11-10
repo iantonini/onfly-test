@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('expenses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('fk_user')->constrained('users')->onDelete('cascade');
             $table->foreignId('fk_card')->constrained('cards')->onDelete('cascade');
             $table->decimal('expense_value', 10, 2)->default(0)->unsigned();
             $table->decimal('previous_balance', 10, 2)->default(0)->unsigned();
             $table->decimal('current_balance', 10, 2)->default(0)->unsigned();
-            $table->boolean('delete')->default(false);
+            $table->bigInteger('deleted')->unsigned()->default(0);
+            $table->foreignId('registered_by_user')->constrained('users')->onDelete('cascade');
             $table->datetimes();
         });
     }
