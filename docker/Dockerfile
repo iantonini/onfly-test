@@ -31,9 +31,12 @@ RUN set -ex \
 
 WORKDIR /api
 COPY . /api
+COPY ./.env-exemple ./.env
+COPY ./.env-test ./.env-test
 
-# TODO: Verificar problema ao subir container
-# RUN composer install --no-dev -o && php bin/hyperf.php
+# RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+# RUN php bin/hyperf.php migrate
+# RUN ./vendor/bin/phpunit
 
 EXPOSE 9501
 
