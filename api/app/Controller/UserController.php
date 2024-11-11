@@ -19,11 +19,10 @@ class UserController extends AbstractController
 
         $token = $this->request->input('token');
         if (isset($token)) {
-            $status = 'success';
             $msg = 'Unable to find a user with the provided token';
 
             $user = $this->tokenService->getUserByToken($token);
-            if ($user) {
+            if (!! $user) {
                 $status = 'success';
                 $msg = 'success';
             }
@@ -48,7 +47,7 @@ class UserController extends AbstractController
             $msg = 'Unable to find a user with the provided token';
 
             $user = $this->tokenService->getUserByToken($token);
-            if ($user) {
+            if (!! $user) {
                 $allUsers = $user;
                 if (!! $user->superuser) {
                     $allUsers = User::all();

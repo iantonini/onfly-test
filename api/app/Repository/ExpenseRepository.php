@@ -51,7 +51,7 @@ class ExpenseRepository
     public function deleteExpense(array $data)
     {
         $expense = $this->model->find($data['id']);
-        $expense->delete = $data['delete_id'];
+        $expense->deleted = $data['delete_id'];
         if (! $expense->save()) {
             $expense = [];
         }
