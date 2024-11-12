@@ -1,14 +1,14 @@
 services:
   api:
     build:
-      context: .
-      dockerfile: ./Dockerfile
+      context: ..
+      dockerfile: ./docker/Dockerfile
     image: onfly_api
     container_name: onfly_api
     ports:
       - "9501:9501"
     volumes:
-      - ../api:/api
+      - ./api:/api
     env_file:
       - .env-exemple
     networks:

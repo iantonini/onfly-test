@@ -4,6 +4,8 @@ ___
 [Home](../README.md) |
 [Requisitos](./Onfly-Teste-Tecnico.md) |
 [Endpoints](./Endpoints.md) |
+[Tests](./ListTests.md) |
+[Querys](./Querys.md) |
 ___
 
 #### Para começar:   
