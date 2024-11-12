@@ -30,15 +30,10 @@ RUN set -ex \
     && echo -e "\033[42;37m Build Completed :).\033[0m\n"
 
 WORKDIR /api
-COPY . /api
-COPY ./.env-exemple ./.env
-COPY ./.env-test ./.env-test
-
-# RUN composer install --no-interaction --prefer-dist --optimize-autoloader
-# RUN php bin/hyperf.php migrate
-# RUN ./vendor/bin/phpunit
+COPY ./api /api
+COPY ./docker/.env-exemple /api/.env
+COPY ./docker/entrypoint.sh /api/entrypoint.sh
 
 EXPOSE 9501
 
-# ENTRYPOINT ["php", "/api/bin/hyperf.php", "start"]
-ENTRYPOINT ["php", "/api/bin/hyperf.php", "server:watch"]
+ENTRYPOINT [ "/api/entrypoint.sh" ]
