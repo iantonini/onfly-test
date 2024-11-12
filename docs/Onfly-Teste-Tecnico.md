@@ -3,7 +3,9 @@
 ___
 [Home](../README.md) |
 [Requisitos](./Onfly-Teste-Tecnico.md) |
-[Doc Swagguer](http://localhost:9501/swagger/) |
+[Endpoints](./Endpoints.md) |
+[Tests](./ListTests.md) |
+[Querys](./Querys.md) |
 ___
 
 #### Para começar:   
