@@ -8,7 +8,7 @@ services:
     ports:
       - "9501:9501"
     volumes:
-      - ./api:/api
+      - ../api:/api
     env_file:
       - .env-exemple
     networks:

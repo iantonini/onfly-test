@@ -29,10 +29,11 @@ RUN set -ex \
     && rm -rf /var/cache/apk/* /tmp/* /usr/share/man \
     && echo -e "\033[42;37m Build Completed :).\033[0m\n"
 
-WORKDIR /api
 COPY ./api /api
 COPY ./docker/.env-exemple /api/.env
 COPY ./docker/entrypoint.sh /api/entrypoint.sh
+
+WORKDIR /api
 
 EXPOSE 9501
 
