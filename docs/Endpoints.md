@@ -175,7 +175,7 @@ body: application/json
 Request:
 ```json   
     {   
-      "1token": "e714737374acc3e767e149f0f0e48dfe",   
+      "token": "e714737374acc3e767e149f0f0e48dfe",   
       "email": "user1@onfly.com"   
     }   
 ```   
